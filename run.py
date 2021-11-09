@@ -38,3 +38,13 @@ class Board:
             self.ships.append((width, height))
             if self.type == 'player':
                 self.board[width][height] = '@'
+
+
+def play_game():
+    print('~' * 60)
+    print('WELCOME TO BATTLESHIPS')
+    print('~' * 60)
+    name = str(input('Please enter your name here: '))
+
+
+play_game()
