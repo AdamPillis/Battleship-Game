@@ -47,10 +47,40 @@ def get_user_data():
     Returns width, height and number of ships in a
     list form.
     """
-    print('Number of rows and columns must be between 3 and 10.')
-    width = input('Number of rows: ')
-    height = input('Number of columns: ')
-    ships = input('Number of ships: ')
+    while True:
+        print('Number of rows will be equal to the number of columns')
+        print('Number must be between 5 and 10')
+        size = input('Size of board: ')
+
+        print('Number of ships must not exceed 10')
+        ships = input('Number of ships: ')
+
+        new_size = validate_user_data(size)
+        new_ships = validate_user_data(ships)
+        
+        if new_size and new_ships:
+            print('Data is valid')
+            break
+        
+    return [size, ships]
+
+
+def validate_user_data(values):
+    """
+    Checks if user input is an integer and whether or not is
+    in the given range (5 - 10)
+    If string, it raises ValueError
+    """
+    try:
+        if int(values) < 5 or int(values) > 10:
+            raise ValueError(
+                f'Both numbers must be between 5 and 10, you entered {values}'
+            )
+    except ValueError as e:
+        print(f'Invalid input: {e}, please try again...\n')
+        return False
+
+    return True
 
 
 def play_game():
@@ -63,7 +93,8 @@ def play_game():
     print('~' * 60)
     name = input('Please enter your name here: ')
     print(f"Hi {name}. Some rules before we start...")
-    get_user_data()
+    data = get_user_data()
+    print(data)
 
 
 play_game()
