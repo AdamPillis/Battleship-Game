@@ -1,7 +1,7 @@
 from random import randint
 
 
-class main_board:
+class Board:
     """
     Will create player and computer board based on
     user input.
@@ -19,3 +19,22 @@ class main_board:
         for row in board:
             print(' '.join(row))
 
+    def player_guess(self, width, height):
+        self.guesses.append((width, height))
+        self.board[width][height] = 'X'
+
+        if (width, height) in self.ships:
+            self.board[width][height] = '#'
+            return f'{self.name}, you hit and sank a battleship!'
+
+        else:
+            return f"{self.name}, you've missed this time..."
+
+    def add_ships(self, width, height, type='computer'):
+        if len(self.ships) >= self.ship_nums:
+            print('Too many ships')
+
+        else:
+            self.ships.append((width, height))
+            if self.type == 'player':
+                self.board[width][height] = '@'
