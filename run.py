@@ -40,11 +40,30 @@ class Board:
                 self.board[width][height] = '@'
 
 
+def get_user_data():
+    """
+    Collects information from user which is required
+    to set up the game i.e size of the board.
+    Returns width, height and number of ships in a
+    list form.
+    """
+    print('Number of rows and columns must be between 3 and 10.')
+    width = input('Number of rows: ')
+    height = input('Number of columns: ')
+    ships = input('Number of ships: ')
+
+
 def play_game():
+    """
+    Runs main game every time user reloads
+    or restarts the game
+    """
     print('~' * 60)
     print('WELCOME TO BATTLESHIPS')
     print('~' * 60)
-    name = str(input('Please enter your name here: '))
+    name = input('Please enter your name here: ')
+    print(f"Hi {name}. Some rules before we start...")
+    get_user_data()
 
 
 play_game()
