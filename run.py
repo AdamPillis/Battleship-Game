@@ -19,7 +19,7 @@ class Board:
         for row in self.board:
             print(' '.join(row))
 
-    def player_guess(self, x, y):
+    def board_guess(self, x, y):
         self.guesses.append((x, y))
         self.board[x][y] = 'X'
 
@@ -110,17 +110,37 @@ def populate_game_board(board):
 
 def make_guess(board):
     """
-    Requests player input for row and column and checks 
-    against ship coordanites
+    For computer, generates random x and y coordanites.
+    For player, row and col input is requested. 
     """
     if board.type == 'computer':
+        print("Computer's turn to guess")
         row_guess = random_number(board.size)
         col_guess = random_number(board.size)
-        print(row_guess)
-        print(col_guess)
     else:
         row_guess = input('Enter row num:\n')
         col_guess = input('Enter column num:\n')
+
+        print(row_guess)
+        print(col_guess)
+
+
+def validate_guess(board, value):
+    """
+    Validates player input: Must be number within range,
+    checks for duplicates and whether a ship is hit or not.
+    """
+    try:
+        if value < 0 or value > board.size:
+            raise ValueError(
+                f'You must enter a number between 0 and {board.size}'
+            )
+    except ValueError as e:
+        print(f'Invalid Data: {e}, please try your guess again.\n')
+        return False
+    
+    print('DAta is valid')
+    return True
 
 
 def new_game():
@@ -145,8 +165,12 @@ def new_game():
     populate_game_board(player_board)
     print('~' * 60)
     populate_game_board(computer_board)
-    make_guess(computer_board)
+
     make_guess(player_board)
+    make_guess(computer_board)
+
+    print(player_board.guesses)
+    print(computer_board.guesses)
 
 
 new_game()
