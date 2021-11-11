@@ -96,16 +96,31 @@ def populate_game_board(board):
     user input
     """
     print(f"{board.name}'s board:\n")
-    
+
     size = board.size
 
     while len(board.ships) != board.ship_nums:
         x = random_number(size)
         y = random_number(size)
         board.add_ships(x, y)
-    
+
     board.print_board()
     print(board.ships)
+
+
+def make_guess(board):
+    """
+    Requests player input for row and column and checks 
+    against ship coordanites
+    """
+    if board.type == 'computer':
+        row_guess = random_number(board.size)
+        col_guess = random_number(board.size)
+        print(row_guess)
+        print(col_guess)
+    else:
+        row_guess = input('Enter row num:\n')
+        col_guess = input('Enter column num:\n')
 
 
 def new_game():
@@ -130,6 +145,8 @@ def new_game():
     populate_game_board(player_board)
     print('~' * 60)
     populate_game_board(computer_board)
+    make_guess(computer_board)
+    make_guess(player_board)
 
 
 new_game()
