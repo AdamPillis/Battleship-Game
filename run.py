@@ -11,33 +11,33 @@ class Board:
         self.size = size
         self.ship_nums = ship_nums
         self.type = type
-        self.board = [['~' for width in range(size)] for height in range(size)]
+        self.board = [['| ' for x in range(size)] for y in range(size)]
         self.ships = []
         self.guesses = []
 
     def print_board(self):
-        for row in board:
+        for row in self.board:
             print(' '.join(row))
 
-    def player_guess(self, width, height):
-        self.guesses.append((width, height))
-        self.board[width][height] = 'X'
+    def player_guess(self, x, y):
+        self.guesses.append((x, y))
+        self.board[x][y] = 'X'
 
-        if (width, height) in self.ships:
-            self.board[width][height] = '#'
+        if (x, y) in self.ships:
+            self.board[x][y] = '#'
             return f'{self.name}, you hit and sank a battleship!'
-
         else:
             return f"{self.name}, you've missed this time..."
 
-    def add_ships(self, width, height, type='computer'):
+    def add_ships(self, x, y, type='computer'):
         if len(self.ships) >= self.ship_nums:
             print('Too many ships')
 
         else:
-            self.ships.append((width, height))
+            self.ships.append((x, y))
             if self.type == 'player':
-                self.board[width][height] = '@'
+                self.board[x][y] = '@'
+
 
 
 def get_user_data():
@@ -49,19 +49,18 @@ def get_user_data():
     """
     while True:
         print('Number of rows will be equal to the number of columns')
-        print('Number must be between 5 and 10')
-        size = input('Size of board: ')
+        print('Numbers must be between 5 and 10\n')
+        size = input('Size of board:\n')
 
-        print('Number of ships must not exceed 10')
-        ships = input('Number of ships: ')
+        ships = input('Number of ships:\n')
 
         new_size = validate_user_data(size)
         new_ships = validate_user_data(ships)
-        
+
         if new_size and new_ships:
-            print('Data is valid')
+            print('Data is valid\n')
             break
-        
+
     return [size, ships]
 
 
@@ -83,6 +82,16 @@ def validate_user_data(values):
     return True
 
 
+def populate_game_board(board):
+    """
+    Populates game board for each player, one for the user
+    and one for the computer. Size and number of ships depends on
+    user input
+    """
+    print(f"{board.name}'s board:\n")
+    board.print_board()
+
+
 def play_game():
     """
     Runs main game every time user reloads
@@ -91,10 +100,20 @@ def play_game():
     print('~' * 60)
     print('WELCOME TO BATTLESHIPS')
     print('~' * 60)
-    name = input('Please enter your name here: ')
-    print(f"Hi {name}. Some rules before we start...")
+    name = input('Please enter your name here:\n')
+    print(f"Hi {name}. Some rules before we start...\n")
     data = get_user_data()
-    print(data)
+    size = int(data[0])
+    num_of_ships = int(data[1])
+
+    print('Creating new game...\n')
+
+    player_board = Board(name, size, num_of_ships, type='player')
+    computer_board = Board('computer', size, num_of_ships, type='computer')
+
+    populate_game_board(player_board)
+    print('~' * 60)
+    populate_game_board(computer_board)
 
 
 play_game()
