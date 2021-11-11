@@ -39,6 +39,13 @@ class Board:
                 self.board[x][y] = '@'
 
 
+def random_number(size):
+    """
+    Returns random integer between 0 and the length of the board
+    chosen by the player.
+    """
+    return randint(0, (size) - 1)
+
 
 def get_user_data():
     """
@@ -89,10 +96,19 @@ def populate_game_board(board):
     user input
     """
     print(f"{board.name}'s board:\n")
+    
+    size = board.size
+
+    while len(board.ships) != board.ship_nums:
+        x = random_number(size)
+        y = random_number(size)
+        board.add_ships(x, y)
+    
     board.print_board()
+    print(board.ships)
 
 
-def play_game():
+def new_game():
     """
     Runs main game every time user reloads
     or restarts the game
@@ -116,4 +132,4 @@ def play_game():
     populate_game_board(computer_board)
 
 
-play_game()
+new_game()
