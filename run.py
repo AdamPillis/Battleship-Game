@@ -61,8 +61,8 @@ def get_user_data():
 
         ships = input('Number of ships:\n')
 
-        new_size = validate_user_data(size)
-        new_ships = validate_user_data(ships)
+        new_size = validate_user_data(size, 5, 10)
+        new_ships = validate_user_data(ships, 5, 10)
 
         if new_size and new_ships:
             print('Data is valid\n')
@@ -71,14 +71,14 @@ def get_user_data():
     return [size, ships]
 
 
-def validate_user_data(values):
+def validate_user_data(values, a, b):
     """
     Checks if user input is an integer and whether or not is
     in the given range (5 - 10)
     If string, it raises ValueError
     """
     try:
-        if int(values) < 5 or int(values) > 10:
+        if int(values) < a or int(values) > b:
             raise ValueError(
                 f'Both numbers must be between 5 and 10, you entered {values}'
             )
@@ -113,19 +113,26 @@ def make_guess(board):
     For computer, generates random x and y coordanites.
     For player, row and col input is requested. 
     """
-    if board.type == 'computer':
-        print("Computer's turn to guess")
-        row_guess = random_number(board.size)
-        col_guess = random_number(board.size)
-    else:
-        row_guess = input('Enter row num:\n')
-        col_guess = input('Enter column num:\n')
+    size = board.size
+    while True:
+        if board.type == 'computer':
+            print("Computer's turn to guess")
+            row_guess = random_number(board.size)
+            col_guess = random_number(board.size)
+        else:
+            row_guess = int(input('Enter row num:\n'))
+            col_guess = int(input('Enter column num:\n'))
 
-        print(row_guess)
-        print(col_guess)
+        row = validate_user_data(row_guess, 0, size)
+        col = validate_user_data(col_guess, 0, size)
 
+        if row and col:
+            print('Verified')
+            break
 
-def validate_guess(board, value):
+    return (int(row_guess), int(col_guess))
+
+def validate_guess(board, ):
     """
     Validates player input: Must be number within range,
     checks for duplicates and whether a ship is hit or not.
@@ -166,8 +173,11 @@ def new_game():
     print('~' * 60)
     populate_game_board(computer_board)
 
-    make_guess(player_board)
-    make_guess(computer_board)
+    player_guess = make_guess(player_board)
+    comp_guess = make_guess(computer_board)
+
+    print(player_guess)
+    print(comp_guess)
 
     print(player_board.guesses)
     print(computer_board.guesses)
