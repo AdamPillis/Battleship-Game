@@ -142,7 +142,7 @@ def validate_guess(board, other_board, x, y):
     while True:
         for board_guess in board_guesses:
             if (x, y) == board_guess:
-                print(f'{board.name}, you already guessed {guess}.')
+                print(f'{board.name}, you already guessed {(x, y)}.')
                 print('Please try again.')
                 return False
 
@@ -152,11 +152,18 @@ def validate_guess(board, other_board, x, y):
         if (x, y) == ship_to_hit:
             other_board.board[x][y] = '#'
             print('you sank my battleship')
+            break
         else:
             board.guesses.append((x, y))
             other_board.board[x][y] = 'X'
+            print('You missed this time')
 
-    print('You missed this time')
+
+def play_game(board, other_board):
+    """
+    """
+    board.print_board()
+    other_board.print_board()
 
 
 def new_game():
@@ -187,6 +194,8 @@ def new_game():
     row = player_guess[0]
     col = player_guess[1]
     validate_guess(player_board, computer_board, row, col)
+
+    play_game(player_board, computer_board)
 
     print('Finished Game')
 
