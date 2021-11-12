@@ -127,27 +127,36 @@ def make_guess(board):
         col = validate_user_data(col_guess, 0, size)
 
         if row and col:
-            print('Verified')
             break
 
-    return (int(row_guess), int(col_guess))
+    return [int(row_guess), int(col_guess)]
 
-def validate_guess(board, ):
+
+def validate_guess(board, other_board, x, y):
     """
     Validates player input: Must be number within range,
     checks for duplicates and whether a ship is hit or not.
     """
-    try:
-        if value < 0 or value > board.size:
-            raise ValueError(
-                f'You must enter a number between 0 and {board.size}'
-            )
-    except ValueError as e:
-        print(f'Invalid Data: {e}, please try your guess again.\n')
-        return False
-    
-    print('DAta is valid')
-    return True
+    ships_to_hit = other_board.ships
+    board_guesses = board.guesses
+    while True:
+        for board_guess in board_guesses:
+            if (x, y) == board_guess:
+                print(f'{board.name}, you already guessed {guess}.')
+                print('Please try again.')
+                return False
+
+        break
+
+    for ship_to_hit in ships_to_hit:
+        if (x, y) == ship_to_hit:
+            other_board.board[x][y] = '#'
+            print('you sank my battleship')
+        else:
+            board.guesses.append((x, y))
+            other_board.board[x][y] = 'X'
+
+    print('You missed this time')
 
 
 def new_game():
@@ -175,12 +184,11 @@ def new_game():
 
     player_guess = make_guess(player_board)
     comp_guess = make_guess(computer_board)
+    row = player_guess[0]
+    col = player_guess[1]
+    validate_guess(player_board, computer_board, row, col)
 
-    print(player_guess)
-    print(comp_guess)
-
-    print(player_board.guesses)
-    print(computer_board.guesses)
+    print('Finished Game')
 
 
 new_game()
