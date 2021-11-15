@@ -1,4 +1,5 @@
 from random import randint
+import time
 
 
 class Board:
@@ -11,7 +12,7 @@ class Board:
         self.size = size
         self.ship_nums = ship_nums
         self.type = type
-        self.board = [['| ' for x in range(size)] for y in range(size)]
+        self.board = [['|  ' for x in range(size)] for y in range(size)]
         self.ships = []
         self.guesses = []
 
@@ -24,7 +25,7 @@ class Board:
         self.board[x][y] = 'X'
 
         if (x, y) in self.ships:
-            self.board[x][y] = '#'
+            self.board[x][y] = '| O'
             return f'{self.name}, you hit and sank a battleship!'
         else:
             return f"{self.name}, you've missed this time..."
@@ -36,7 +37,7 @@ class Board:
         else:
             self.ships.append((x, y))
             if self.type == 'player':
-                self.board[x][y] = '@'
+                self.board[x][y] = '| @'
 
 
 def random_number(size):
@@ -56,16 +57,19 @@ def get_user_data():
     """
     while True:
         print('Numbers must be between 5 and 10\n')
-        size = input('Size of board:\n')
-
-        ships = input('Number of ships:\n')
+        size = input('Size of your square board:\n')
 
         new_size = validate_user_data(size, 5, 10)
-        new_ships = validate_user_data(ships, 5, 10)
 
-        if new_size and new_ships:
-            print('Data is valid\n')
-            break
+        if new_size:
+        
+            ships = input('Number of ships on each board:\n')
+
+            new_ships = validate_user_data(ships, 5, 10)
+
+            if new_ships:
+                print('Creating board...\n')
+                break
 
     return [size, ships]
 
@@ -148,12 +152,12 @@ def validate_guess(board, other_board, x, y):
 
     if (x, y) in other_board.ships:
         board.guesses.append((x, y))
-        other_board.board[x][y] = '#'
-        print('you sank my battleship')
+        other_board.board[x][y] = '| O'
+        print('A Battleship has been hit!')
     else:
         board.guesses.append((x, y))
-        other_board.board[x][y] = 'X'
-        print('You missed this time')
+        other_board.board[x][y] = '| X'
+        print('Missile missed target...')
 
 
 def play_game(board, other_board, ships):
@@ -190,13 +194,16 @@ def new_game():
     print('~' * 50)
     name = input('Please enter your name here:\n')
     print(f"Hi {name}. Let's go through some rules first...\n")
+    time.sleep(1)
     print('~' * 50)
     print('1. Number of rounds will be equal to the number of ships chosen.')
     print('2. Each ship sank is worth 5 points')
     print('3. Top left hand corner is row 0, col 0')
+    print('4. Number of rows will be equal to the number of columns')
     print('~' * 50)
+    time.sleep(5)
     input('Press Enter to start your game.\n')
-
+    time.sleep(0.5)
     print('Creating new game...\n')
 
     data = get_user_data()
@@ -204,8 +211,8 @@ def new_game():
     num_of_ships = int(data[1])
 
     player_board = Board(name, size, num_of_ships, type='player')
-    computer_board = Board('computer', size, num_of_ships, type='computer')
-    
+    computer_board = Board('Computer', size, num_of_ships, type='computer')
+    time.sleep(2)
     play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
@@ -214,7 +221,7 @@ def new_game():
     print('game over')
 
     print('Creating new game...\n')
-    
+
     play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
