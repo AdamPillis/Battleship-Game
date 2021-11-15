@@ -55,7 +55,6 @@ def get_user_data():
     list form.
     """
     while True:
-        print('Number of rows will be equal to the number of columns')
         print('Numbers must be between 5 and 10\n')
         size = input('Size of board:\n')
 
@@ -160,7 +159,7 @@ def validate_guess(board, other_board, x, y):
 def play_game(board, other_board, ships):
     """
     """
-    while True: 
+    while True:
         populate_game_board(board)
         print('~' * 60)
         populate_game_board(other_board)
@@ -186,19 +185,35 @@ def new_game():
     Runs main game every time user reloads
     or restarts the game
     """
-    print('~' * 60)
+    print('~' * 50)
     print('WELCOME TO BATTLESHIPS')
-    print('~' * 60)
+    print('~' * 50)
     name = input('Please enter your name here:\n')
-    print(f"Hi {name}. Some rules before we start...\n")
+    print(f"Hi {name}. Let's go through some rules first...\n")
+    print('~' * 50)
+    print('1. Number of rounds will be equal to the number of ships chosen.')
+    print('2. Each ship sank is worth 5 points')
+    print('3. Top left hand corner is row 0, col 0')
+    print('~' * 50)
+    input('Press Enter to start your game.\n')
+
+    print('Creating new game...\n')
+
     data = get_user_data()
     size = int(data[0])
     num_of_ships = int(data[1])
 
-    print('Creating new game...\n')
-
     player_board = Board(name, size, num_of_ships, type='player')
     computer_board = Board('computer', size, num_of_ships, type='computer')
+    
+    play_game(player_board, computer_board, num_of_ships)
+
+    populate_game_board(player_board)
+    print('~' * 60)
+    populate_game_board(computer_board)
+    print('game over')
+
+    print('Creating new game...\n')
     
     play_game(player_board, computer_board, num_of_ships)
 
