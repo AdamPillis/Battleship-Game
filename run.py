@@ -137,7 +137,6 @@ def validate_guess(board, other_board, x, y):
     Validates player input: Must be number within range,
     checks for duplicates and whether a ship is hit or not.
     """
-    ships_to_hit = other_board.ships
     board_guesses = board.guesses
     while True:
         for board_guess in board_guesses:
@@ -148,22 +147,38 @@ def validate_guess(board, other_board, x, y):
 
         break
 
-    for ship_to_hit in ships_to_hit:
-        if (x, y) == ship_to_hit:
-            other_board.board[x][y] = '#'
-            print('you sank my battleship')
+    if (x, y) in other_board.ships:
+        board.guesses.append((x, y))
+        other_board.board[x][y] = '#'
+        print('you sank my battleship')
+    else:
+        board.guesses.append((x, y))
+        other_board.board[x][y] = 'X'
+        print('You missed this time')
+
+
+def play_game(board, other_board, ships):
+    """
+    """
+    while True: 
+        populate_game_board(board)
+        print('~' * 60)
+        populate_game_board(other_board)
+
+        player_guess = make_guess(board)
+        p_row = player_guess[0]
+        p_col = player_guess[1]
+        validate_guess(board, other_board, p_row, p_col)
+
+        comp_guess = make_guess(other_board)
+        c_row = comp_guess[0]
+        c_col = comp_guess[1]
+        validate_guess(other_board, board, c_row, c_col)
+
+        if len(other_board.guesses) == ships:
             break
-        else:
-            board.guesses.append((x, y))
-            other_board.board[x][y] = 'X'
-            print('You missed this time')
 
-
-def play_game(board, other_board):
-    """
-    """
-    board.print_board()
-    other_board.print_board()
+    print('finished game')
 
 
 def new_game():
@@ -184,20 +199,13 @@ def new_game():
 
     player_board = Board(name, size, num_of_ships, type='player')
     computer_board = Board('computer', size, num_of_ships, type='computer')
+    
+    play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
     print('~' * 60)
     populate_game_board(computer_board)
-
-    player_guess = make_guess(player_board)
-    comp_guess = make_guess(computer_board)
-    row = player_guess[0]
-    col = player_guess[1]
-    validate_guess(player_board, computer_board, row, col)
-
-    play_game(player_board, computer_board)
-
-    print('Finished Game')
+    print('game over')
 
 
 new_game()
