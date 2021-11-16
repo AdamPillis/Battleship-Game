@@ -24,12 +24,6 @@ class Board:
         self.guesses.append((x, y))
         self.board[x][y] = 'X'
 
-        if (x, y) in self.ships:
-            self.board[x][y] = '| O'
-            return f'{self.name}, you hit and sank a battleship!'
-        else:
-            return f"{self.name}, you've missed this time..."
-
     def add_ships(self, x, y, type='computer'):
         if len(self.ships) >= self.ship_nums:
             print('Too many ships')
@@ -130,8 +124,8 @@ def make_guess(board):
             row_guess = input('Enter row num:\n')
             col_guess = input('Enter column num:\n')
             
-        row = validate_user_data(str(row_guess), 0, size)
-        col = validate_user_data(str(col_guess), 0, size)
+        row = validate_user_data(str(row_guess), 0, (size - 1))
+        col = validate_user_data(str(col_guess), 0, (size - 1))
 
         if row and col:
             break
@@ -143,25 +137,22 @@ def validate_guess(board, other_board, x, y):
     """
     Validates player input: Must be number within range,
     checks for duplicates and whether a ship is hit or not.
-    """
-    board_guesses = board.guesses
-    while True:
-        for board_guess in board_guesses:
-            if (x, y) == board_guess:
-                print(f'{board.name}, you already guessed {(x, y)}.')
-                print('Please try again.')
-                return False
-
-        break
+    """ 
+    if (x, y) in board.guesses:
+        print(f'{board.name}, you already guessed {(x, y)}.')
+        print('Please try again.')
+        return False
 
     if (x, y) in other_board.ships:
         board.guesses.append((x, y))
         other_board.board[x][y] = '| O'
         print('A Battleship has been hit!')
+        return True
     else:
         board.guesses.append((x, y))
         other_board.board[x][y] = '| X'
         print('Missile missed target...')
+        return True
 
 
 def play_game(board, other_board, ships):
@@ -175,8 +166,10 @@ def play_game(board, other_board, ships):
         player_guess = make_guess(board)
         p_row = player_guess[0]
         p_col = player_guess[1]
-        validate_guess(board, other_board, p_row, p_col)
-
+        valid = validate_guess(board, other_board, p_row, p_col)
+        if valid is False:
+            return play_game(board, other_board, ships)
+            
         comp_guess = make_guess(other_board)
         c_row = comp_guess[0]
         c_col = comp_guess[1]
@@ -184,8 +177,7 @@ def play_game(board, other_board, ships):
 
         if len(other_board.guesses) == ships:
             break
-
-    print('finished game')
+    print('finished play game')
 
 
 def new_game():
@@ -201,9 +193,9 @@ def new_game():
     print(f"Hi {name}. Let's go through some rules first...\n")
     time.sleep(1)
     print('~' * 50)
-    print('1. Number of rounds will be equal to the number of ships chosen.')
-    print('2. Each ship sank is worth 5 points')
-    print('3. Top left hand corner is row 0, col 0')
+    print('1. Number of rounds will be equal to the number of ships chosen.\n')
+    print('2. Each ship sank is worth 5 points\n')
+    print('3. Top left hand corner is row 0, col 0\n')
     print('4. Number of rows will be equal to the number of columns')
     print('~' * 50)
     # time.sleep(5)
@@ -221,16 +213,7 @@ def new_game():
     play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
-    print('~' * 60)
-    populate_game_board(computer_board)
-    print('game over')
-
-    print('Creating new game...\n')
-
-    play_game(player_board, computer_board, num_of_ships)
-
-    populate_game_board(player_board)
-    print('~' * 60)
+    print('~' * 50)
     populate_game_board(computer_board)
     print('game over')
 
