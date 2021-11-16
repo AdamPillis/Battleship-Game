@@ -81,10 +81,14 @@ def validate_user_data(values, a, b):
     If string, it raises ValueError
     """
     try:
-        if int(values) < a or int(values) > b:
+        if values.isnumeric() is False:
             raise ValueError(
-                f'Both numbers must be between 5 and 10, you entered {values}'
+                f'You must enter a number.. you entered {values}'
             )
+        elif int(values) < a or int(values) > b:
+            print(f'Invalid Input: Number entered {values} is not in range\n')
+            print('Please try again...\n')
+            return False
     except ValueError as e:
         print(f'Invalid input: {e}, please try again...\n')
         return False
@@ -123,11 +127,11 @@ def make_guess(board):
             row_guess = random_number(board.size)
             col_guess = random_number(board.size)
         else:
-            row_guess = int(input('Enter row num:\n'))
-            col_guess = int(input('Enter column num:\n'))
-
-        row = validate_user_data(row_guess, 0, size)
-        col = validate_user_data(col_guess, 0, size)
+            row_guess = input('Enter row num:\n')
+            col_guess = input('Enter column num:\n')
+            
+        row = validate_user_data(str(row_guess), 0, size)
+        col = validate_user_data(str(col_guess), 0, size)
 
         if row and col:
             break
@@ -193,6 +197,7 @@ def new_game():
     print('WELCOME TO BATTLESHIPS')
     print('~' * 50)
     name = input('Please enter your name here:\n')
+    time.sleep(0.5)
     print(f"Hi {name}. Let's go through some rules first...\n")
     time.sleep(1)
     print('~' * 50)
@@ -201,10 +206,10 @@ def new_game():
     print('3. Top left hand corner is row 0, col 0')
     print('4. Number of rows will be equal to the number of columns')
     print('~' * 50)
-    time.sleep(5)
+    # time.sleep(5)
     input('Press Enter to start your game.\n')
-    time.sleep(0.5)
     print('Creating new game...\n')
+    time.sleep(1.5)
 
     data = get_user_data()
     size = int(data[0])
