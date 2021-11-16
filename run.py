@@ -1,3 +1,6 @@
+"""
+To import random numbers to generate ships and computer guesses
+"""
 from random import randint
 import time
 
