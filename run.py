@@ -81,14 +81,14 @@ def validate_user_data(values, a, b):
     try:
         if values.isnumeric() is False:
             raise ValueError(
-                f'You must enter a number.. you entered {values}'
+                f'You must enter a number.. you entered "{values}"\n'
             )
         elif int(values) < a or int(values) > b:
             print(f'Invalid Input: Number entered {values} is not in range\n')
-            print('Please try again...\n')
+            print('Please try again...')
             return False
     except ValueError as e:
-        print(f'Invalid input: {e}, please try again...\n')
+        print(f'Invalid input: {e}\nPlease try again...')
         return False
 
     return True
@@ -100,6 +100,7 @@ def populate_game_board(board):
     and one for the computer. Size and number of ships depends on
     user input
     """
+    print('~' * 60)
     print(f"{board.name}'s board:\n")
 
     size = board.size
@@ -124,8 +125,10 @@ def make_guess(board):
             row_guess = random_number(board.size)
             col_guess = random_number(board.size)
         else:
+            print('~' * 60)
             row_guess = input('Enter row num:\n')
             col_guess = input('Enter column num:\n')
+            print('~' * 60)
 
         row = validate_user_data(str(row_guess), 0, (size - 1))
         col = validate_user_data(str(col_guess), 0, (size - 1))
@@ -149,19 +152,20 @@ def validate_guess(board, other_board, x, y):
     if (x, y) in other_board.ships:
         board.guesses.append((x, y))
         other_board.board[x][y] = '| O'
-        print('~' * 60)
         print(f"{board.name}'s coordinates {(x, y)}")
-        time.sleep(1)
-        print('A Battleship has been hit!\n')
+        time.sleep(2)
+        print('A Battleship has been hit!')
+        print('~' * 60)
+        time.sleep(2)
         return True
     else:
         board.guesses.append((x, y))
         other_board.board[x][y] = '| X'
-        print('~' * 60)
         print(f"{board.name}'s coordinates {(x, y)}")
-        time.sleep(1)
-        print('Missed target...\n')
-        return True
+        time.sleep(2)
+        print('Missed target...')
+        print('~' * 60)
+        time.sleep(2)
 
 
 def play_game(board, other_board, ships):
@@ -169,7 +173,6 @@ def play_game(board, other_board, ships):
     """
     while True:
         populate_game_board(board)
-        print('~' * 50)
         populate_game_board(other_board)
 
         player_guess = make_guess(board)
@@ -185,7 +188,13 @@ def play_game(board, other_board, ships):
         valid_two = validate_guess(other_board, board, c_row, c_col)
         scores(board, valid)
         scores(other_board, valid_two)
-
+        time.sleep(3)
+        print('~' * 60)
+        next_round = input('Press Enter for next round or "q" to quit.\n')
+        if next_round == 'Enter':
+            continue
+        elif next_round == 'q':
+            break
         if len(other_board.guesses) == ships:
             break
     print('finished play game')
@@ -198,7 +207,6 @@ def scores(board, hit):
 
     if hit:
         board_score += 5
-        print('~' * 60)
         print(f"{board.name}'s score is now: {board_score}")
 
 
@@ -222,6 +230,8 @@ def new_game():
     print('~' * 60)
     # time.sleep(5)
     input('Press Enter to start your game.\n')
+    print('Starting game...\n')
+    time.sleep(2)
     data = get_user_data()
     size = int(data[0])
     num_of_ships = int(data[1])
