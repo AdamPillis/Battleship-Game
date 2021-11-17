@@ -10,6 +10,8 @@ class Board:
     Will create player and computer board based on
     user input.
     """
+    score = 0
+
     def __init__(self, name, size, ship_nums, type):
         self.name = name
         self.size = size
@@ -186,9 +188,11 @@ def play_game(board, other_board, ships):
         c_row = comp_guess[0]
         c_col = comp_guess[1]
         valid_two = validate_guess(other_board, board, c_row, c_col)
+        if valid_two is False:
+            return play_game(board, other_board, ships)
         scores(board, valid)
         scores(other_board, valid_two)
-        time.sleep(3)
+        time.sleep(2)
         print('~' * 60)
         next_round = input('Press Enter for next round or "q" to quit.\n')
         if next_round == 'Enter':
@@ -203,12 +207,12 @@ def play_game(board, other_board, ships):
 def scores(board, hit):
     """
     """
-    board_score = 0
-
     if hit:
-        board_score += 5
-        print(f"{board.name}'s score is now: {board_score}")
-
+        board.score += 5
+        print(f"{board.name}'s score is: {board.score}")
+    else:
+        print(f"{board.name}'s score is: {board.score}")
+        
 
 def new_game():
     """
