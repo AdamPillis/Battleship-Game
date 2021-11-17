@@ -90,7 +90,7 @@ def validate_user_data(values, a, b):
             print('Please try again...')
             return False
     except ValueError as e:
-        print(f'Invalid input: {e}\nPlease try again...')
+        print(f'Invalid input: {e}\nPlease try again...\n')
         return False
 
     return True
@@ -145,10 +145,11 @@ def validate_guess(board, other_board, x, y):
     """
     Validates player input: Must be number within range,
     checks for duplicates and whether a ship is hit or not.
-    """ 
+    """
     if (x, y) in board.guesses:
-        print(f'{board.name}, you already guessed {(x, y)}.')
+        print(f'{board.name}, you already guessed {(x, y)}./n')
         print('Please try again.')
+        time.sleep(2)
         return False
 
     if (x, y) in other_board.ships:
@@ -194,14 +195,28 @@ def play_game(board, other_board, ships):
         scores(other_board, valid_two)
         time.sleep(2)
         print('~' * 60)
-        next_round = input('Press Enter for next round or "q" to quit.\n')
+        next_round = input('Press Enter to continue or "q" to quit.\n')
         if next_round == 'Enter':
             continue
         elif next_round == 'q':
             break
         if len(other_board.guesses) == ships:
             break
-    print('finished play game')
+    print('~' * 60)
+    print('Finishing game, few moments...')
+    time.sleep(3)
+    print('~' * 60)
+    print(f"{board.name}'s score is: {board.score}")
+    print(f"{other_board.name}'s score is: {other_board.score}\n")
+    if board.score > other_board.score:
+        print(f'{board.name} won this game.')
+        print('Well done for defeating your opponent!')
+    elif board.score < other_board.score:
+        print(f'{other_board.name} won this game. Might be luckier next time')
+    elif board.score == other_board.score:
+        print('Both sides have taken damage but victory was on either side.')
+        print('Well fought, might get luckier next time.')
+    time.sleep(3)
 
 
 def scores(board, hit):
@@ -212,7 +227,7 @@ def scores(board, hit):
         print(f"{board.name}'s score is: {board.score}")
     else:
         print(f"{board.name}'s score is: {board.score}")
-        
+
 
 def new_game():
     """
@@ -250,9 +265,15 @@ def new_game():
     play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
-    print('~' * 60)
+    
     populate_game_board(computer_board)
-    print('game over')
+    print('~' * 60)
+    print('Are you ready to challenge yourself again?\n')
+    replay = input('Enter "y" to play another or "n" to quit the game:\n')
+    if replay == 'y':
+        new_game()
+    else:
+        print(f'Well played {player_board.name}. Goodbye for now!\n')
 
 
 new_game()
