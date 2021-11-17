@@ -113,7 +113,7 @@ def populate_game_board(board):
         board.add_ships(x, y)
 
     board.print_board()
-    print(board.ships)
+    # print(board.ships)
 
 
 def make_guess(board):
@@ -265,7 +265,7 @@ def new_game():
     play_game(player_board, computer_board, num_of_ships)
 
     populate_game_board(player_board)
-    
+
     populate_game_board(computer_board)
     print('~' * 60)
     print('Are you ready to challenge yourself again?\n')
