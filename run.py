@@ -28,11 +28,9 @@ class Board:
         self.board[x][y] = 'X'
 
     def add_ships(self, x, y, type='computer'):
-        if len(self.ships) >= self.ship_nums:
-            print('Too many ships')
-
-        else:
+        while (x, y) not in self.ships:
             self.ships.append((x, y))
+
             if self.type == 'player':
                 self.board[x][y] = '| @'
 
