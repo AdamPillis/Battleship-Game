@@ -113,7 +113,7 @@ def populate_game_board(board):
         board.add_ships(x, y)
 
     board.print_board()
-    # print(board.ships)
+    print(board.ships)
 
 
 def make_guess(board):
@@ -147,8 +147,8 @@ def validate_guess(board, other_board, x, y):
     checks for duplicates and whether a ship is hit or not.
     """
     if (x, y) in board.guesses:
-        print(f'{board.name}, you already guessed {(x, y)}./n')
-        print('Please try again.')
+        print(f'{board.name}, you already guessed {(x, y)}.')
+        print('Please try again...')
         time.sleep(2)
         return False
 
@@ -190,7 +190,9 @@ def play_game(board, other_board, ships):
         c_col = comp_guess[1]
         valid_two = validate_guess(other_board, board, c_row, c_col)
         if valid_two is False:
+            board.guesses.pop()
             return play_game(board, other_board, ships)
+
         scores(board, valid)
         scores(other_board, valid_two)
         time.sleep(2)
@@ -234,7 +236,16 @@ def new_game():
     Runs main game every time user reloads
     or restarts the game
     """
-    print('~' * 60)
+    print('~' * 60 )
+    print("              |    |    | ")
+    print("             (_(  (_(  (_(")
+    print("           /(___((___((___(")
+    print("         //(____(____(_____(")
+    print("     __///____|____|____|_____")
+    print("---------(                   /---------")
+    print("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^")
+    print("    ^^^^      ^^^^     ^^^    ^^")
+    print("         ^^^^      ^^^\n")
     print('WELCOME TO BATTLESHIPS')
     print('~' * 60)
     name = input('Please enter your name here:\n')
