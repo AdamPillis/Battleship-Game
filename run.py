@@ -1,5 +1,6 @@
 """
-To import random numbers to generate ships and computer guesses
+Import random integers to generate board ships and computer guesses
+Time library used to make game realistic i.e pause for seconds several times.
 """
 from random import randint
 import time
@@ -7,8 +8,9 @@ import time
 
 class Board:
     """
-    Will create player and computer board based on
-    user input.
+    General strucuture for each player and board.
+    Used to call board information throughout the game.
+    Global score also used to keep score count.
     """
     score = 0
 
@@ -22,14 +24,18 @@ class Board:
         self.guesses = []
 
     def print_board(self):
+        """
+        Adds and prints player and computer board.
+        """
         for row in self.board:
             print(' '.join(row))
 
-    def board_guess(self, x, y):
-        self.guesses.append((x, y))
-        self.board[x][y] = 'X'
-
     def add_ships(self, x, y, type='computer'):
+        """
+        Adds ships to each board.
+        For player, @ represents each ship
+        For computer, they are hidden
+        """
         while (x, y) not in self.ships:
             self.ships.append((x, y))
 
@@ -48,9 +54,11 @@ def random_number(size):
 def get_user_data():
     """
     Collects information from user which is required
-    to set up the game i.e size of the board.
-    Returns width, height and number of ships in a
+    to set up the game i.e size of the board and number of ships.
+    Returns size and number of ships in a
     list form.
+    The while stays active until the input validation function
+    comes back true to prevent Key and Value error
     """
     while True:
         print('Numbers must be between 5 and 10\n')
@@ -76,9 +84,9 @@ def get_user_data():
 
 def validate_user_data(values, a, b):
     """
-    Checks if user input is an integer and whether or not is
-    in the given range (5 - 10)
-    If string, it raises ValueError
+    Checks if "values" is an integer and whether or not is
+    in the given range (a - b)
+    It will only return True if values is correct.
     """
     try:
         if values.isnumeric() is False:
@@ -98,9 +106,11 @@ def validate_user_data(values, a, b):
 
 def populate_game_board(board):
     """
-    Populates game board for each player, one for the user
-    and one for the computer. Size and number of ships depends on
-    user input
+    Based on data returned from get_user_data function.
+    Using class function, adds number of ships to each board
+    until number of ships match user input.
+    Then populates game board for each player, one for the user
+    and one for the computer.
     """
     print('~' * 60)
     print(f"{board.name}'s board:\n")
@@ -118,8 +128,10 @@ def populate_game_board(board):
 
 def make_guess(board):
     """
-    For computer, generates random x and y coordanites.
-    For player, row and col input is requested.
+    For computer, generates random row and col coordanites.
+    For player, row and col input is requested and validated.
+    Size -1 given that rows and cols start with 0.
+    Returns (row, col) in a list form as integers.
     """
     size = board.size
     while True:
@@ -143,8 +155,10 @@ def make_guess(board):
 
 def validate_guess(board, other_board, x, y):
     """
-    Validates player input: Must be number within range,
-    checks for duplicates and whether a ship is hit or not.
+    Validates player input:
+    Checks for duplicates within each board's guess list first.
+    Checks if co-ords match other board's ship co-ords (hit).
+    If none of the above, its a miss.
     """
     if (x, y) in board.guesses:
         print(f'{board.name}, you already guessed {(x, y)}.')
@@ -173,6 +187,12 @@ def validate_guess(board, other_board, x, y):
 
 def play_game(board, other_board, ships):
     """
+    Runs the entire game until end phase.
+    While loop used to run the game until number of rounds
+    match number of ships chosen.
+    If statements restart loop if input data is invalid.
+    Updates global score for each board if ship hit.
+    Displays end score and comments once while loop is broken.
     """
     while True:
         populate_game_board(board)
@@ -223,6 +243,8 @@ def play_game(board, other_board, ships):
 
 def scores(board, hit):
     """
+    If a ship is hit, updates class board score by adding 5.
+    Once updated, prints board's name and updated score.
     """
     if hit:
         board.score += 5
@@ -233,10 +255,11 @@ def scores(board, hit):
 
 def new_game():
     """
-    Runs main game every time user reloads
-    or restarts the game
+    Runs main game from start to finish.
+    At finish, restarts or quits function based on user input.
+    Includes end-game goodbye message.
     """
-    print('~' * 60 )
+    print('~' * 60)
     print("              |    |    | ")
     print("             (_(  (_(  (_(")
     print("           /(___((___((___(")
@@ -246,7 +269,7 @@ def new_game():
     print("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^")
     print("    ^^^^      ^^^^     ^^^    ^^")
     print("         ^^^^      ^^^\n")
-    print('WELCOME TO BATTLESHIPS')
+    print('        WELCOME TO BATTLESHIPS')
     print('~' * 60)
     name = input('Please enter your name here:\n')
     time.sleep(0.5)
@@ -258,14 +281,14 @@ def new_game():
     print('3. Top left hand corner is row 0, col 0\n')
     print('4. Number of rows will be equal to the number of columns')
     print('~' * 60)
-    # time.sleep(5)
+    time.sleep(4)
     input('Press Enter to start your game.\n')
     print('Starting game...\n')
     time.sleep(2)
     data = get_user_data()
     size = int(data[0])
     num_of_ships = int(data[1])
-    print(f'Remember, rows and columns will now range from 0 to {size - 1}\n')
+    print(f'Remember, rows and cols will now range from "0 to {size - 1}"\n')
     time.sleep(2)
     print('Creating new game...\n')
     time.sleep(2)
