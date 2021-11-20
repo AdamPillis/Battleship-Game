@@ -236,9 +236,9 @@ def play_game(board, other_board, ships):
     elif board.score < other_board.score:
         print(f'{other_board.name} won this game. Might be luckier next time')
     elif board.score == other_board.score:
-        print('Both sides have taken damage but victory was on either side.')
+        print('Both sides have taken damage but victory was not on either side.')
         print('Well fought, might get luckier next time.')
-    time.sleep(3)
+    time.sleep(4)
 
 
 def scores(board, hit):
@@ -269,16 +269,16 @@ def new_game():
     print("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^")
     print("    ^^^^      ^^^^     ^^^    ^^")
     print("         ^^^^      ^^^\n")
-    print('        WELCOME TO BATTLESHIPS')
+    print('WELCOME TO BATTLESHIPS')
     print('~' * 60)
     name = input('Please enter your name here:\n')
     time.sleep(0.5)
     print(f"Hi {name}. Let's go through some rules first...\n")
     time.sleep(1)
     print('~' * 60)
-    print('1. Number of rounds will be equal to your number of ships\n')
+    print('1. Top left hand corner is row 0, col 0 (0, 0)\n')
     print('2. Each ship sank is worth 5 points\n')
-    print('3. Top left hand corner is row 0, col 0 (0, 0)\n')
+    print('3. Number of rounds will be equal to your number of ships\n')
     print('4. Number of rows will be equal to the number of columns')
     print('~' * 60)
     time.sleep(4)
