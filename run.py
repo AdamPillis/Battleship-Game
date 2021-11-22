@@ -260,7 +260,7 @@ def new_game():
     Includes end-game goodbye message.
     """
     print('~' * 60)
-    print('WELCOME TO BATTLESHIPS')
+    print('WELCOME TO BATTLESHIP VOYAGE\n')
     print("              |    |    | ")
     print("             (_(  (_(  (_(")
     print("           /(___((___((___(")
@@ -288,9 +288,11 @@ def new_game():
     data = get_user_data()
     size = int(data[0])
     num_of_ships = int(data[1])
+    print('~' * 60)
     print(f'Remember, rows and columns will now range from 0 to {size - 1}\n')
     time.sleep(2)
-    print(f'Ships to hit: {num_of_ships}  Total rounds: {num_of_ships}\n')
+    print(f'Ships to hit: {num_of_ships}  Total rounds: {num_of_ships}')
+    print('~' * 60)
     time.sleep(2)
     print('Creating new game...\n')
     time.sleep(2)
