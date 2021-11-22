@@ -126,8 +126,130 @@ SCREENSHOT OF END
 
 ## 3. Testing and Bugs Fixed/Unfixed
 
-## **Validator Testing**
+### **Validator Testing**
 
 Battleship Voyage is a program purely built using Python so once the code was complete, the developer pasted through **PEP8** and it passed with no errors or issues.
 
 [Link to PEP8](http://pep8online.com/)
+
+SCREENSHOT OF VALIDATION
+
+### **Search Engine Testing**
+
+Battleship Voyage was opened and tested on several search engines such as Google Chrome, Mozzilla Firefox and Microsoft Edge. 
+
+1. **Google Chrome**
+Default SE so therefore, everything is working perfect.
+
+SCREENSHOT 
+
+2. **Mozilla Firefox**
+Game was tested through this *search engine* and it runs as expected. 
+
+SCREENSHOTS
+
+3. **Microsoft Edge**
+The game ran without any errors, issues or bugs through this *search engine* as well. 
+
+SCREENSHOTS 
+
+### **Application Features Test**
+
+In terms of features and user interactivity, every possible outcome has been tried and tested to give the right outcome. Incorrect input will interrupt the program so validation had to be precise to prevent such faults. 
+
+**Welcome section**
+- **Name Input**
+    - get_name function will not proceed unless a name is entered. **true**
+SCREENSHOT OF VALIDATION
+
+**Rules section**
+- **Rules input**
+    - once rules are displayed, input asking user to press enter is showing and working. **true**
+    - is user mistakenly presses any key before enter, the program will still continue instead of crashing. **true**
+SCREENSHOT
+
+**Get User Data section**
+- **get size input**
+    - only numbers between 5 and 10 allowed . **true**
+    - only whole integers allowed. **true**
+
+SCREENSHOT
+
+- **get number of ships input**
+    - only numbers between 5 and 10 allowed . **true**
+    - only whole integers allowed. **true**
+
+    SCREENSHOT
+
+**Reminder Section Box**
+- correct information displayed to user before game starts.
+    - range. **true**
+    - number of ships. **true**
+    - number of rounds. **true**
+
+    SCREENSHOT
+
+**In-game section**
+
+- **row number input**
+    - only numbers within range allowed to be entered. **true**
+    - only integers are accepted. **true**
+
+    SCREENSHOT
+
+- **col number input**
+    - only numbers within range allowed to be entered. **true**
+    - only integers are accepted. **true**
+
+    SCREENSHOT
+
+- updated scores displayed at the end of each round. **true**
+- next round only starts when user clicks *Enter*. **true**
+- if user enters *q* and clicks enter, game finishes. **true**
+
+SCREENSHOT
+
+- when number of guesses equal to the number of ships, game finishes. **true**
+
+SCREENSHOT
+
+**End section**
+- when user clicks *Enter*, final scores and board are displayed. **true**
+
+SCREENSHOT
+
+- specific feedback messages print according to final scores. **true**
+
+- **Input to play again**
+    - when *y* entered, game reloads. **true**
+    - when *n* entered, goodbye message displayed and game finishes. **true**
+
+    SCREENSHOT
+
+### **Screen Responsive Testing**
+
+For this *python* based program, [Am I Responsive](http://ami.responsivedesign.is/) website was used to test and check how the CLI is showing within the browser on multiple sized screens. 
+
+#### **Welcome section**
+
+#### **Rules section**
+
+#### **Input section**
+
+#### **Game section**
+
+#### **End section**
+
+### **Other ways of testing responsiveness**
+The developer has tested the game on his own mobile and other devices while asking other family members to do the same and game runs as expected. 
+
+### **Fixed Bugs**
+1. When the name input was left blank and pressed enter, the game would continue with no name rather than asking the user to enter something. The developer created the **get_name** function and only return a name if something is entered. Solved the arising issue. 
+
+2. The developer went down the root of updating scores through a function which returns an updated value which caused a bug and scores were not updating. 
+He then realised he can just use the class of each board to he created a score variable with a value of 0 and 5 gets added for each ship hit. Solved this issue. 
+
+3. The validated_user_data function did not return the correct error message between incorrect numbers and integers. The developer had to rewrite the function from scratch which worked and eliminated the bug. 
+
+### **Unfixed Bugs**
+Within this game, no erros or unfixed bugs are identified when testing the game. 

@@ -283,7 +283,7 @@ def new_game():
     print("         ^^^^      ^^^\n")
     print('~' * 60)
     name = get_name()
-    time.sleep(0.5)
+    time.sleep(1)
     print(f"Hi {name}. Let's go through some rules first...\n")
     time.sleep(1)
     print('~' * 60)
