@@ -236,7 +236,7 @@ def play_game(board, other_board, ships):
     elif board.score < other_board.score:
         print(f'{other_board.name} won this game. Might be luckier next time')
     elif board.score == other_board.score:
-        print('Both sides have taken damage but victory was not on either side.')
+        print('Both sides have taken damage, surrender and try again.')
         print('Well fought, might get luckier next time.')
     time.sleep(4)
 
@@ -260,6 +260,7 @@ def new_game():
     Includes end-game goodbye message.
     """
     print('~' * 60)
+    print('WELCOME TO BATTLESHIPS')
     print("              |    |    | ")
     print("             (_(  (_(  (_(")
     print("           /(___((___((___(")
@@ -269,7 +270,6 @@ def new_game():
     print("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^")
     print("    ^^^^      ^^^^     ^^^    ^^")
     print("         ^^^^      ^^^\n")
-    print('WELCOME TO BATTLESHIPS')
     print('~' * 60)
     name = input('Please enter your name here:\n')
     time.sleep(0.5)
@@ -289,6 +289,8 @@ def new_game():
     size = int(data[0])
     num_of_ships = int(data[1])
     print(f'Remember, rows and columns will now range from 0 to {size - 1}\n')
+    time.sleep(2)
+    print(f'Ships to hit: {num_of_ships}  Total rounds: {num_of_ships}\n')
     time.sleep(2)
     print('Creating new game...\n')
     time.sleep(2)
