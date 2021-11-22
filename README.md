@@ -121,4 +121,13 @@ SCREENSHOT OF END
 - Increase the size of board to allow bigger ships i.e ships with at least two co-ordinates, just like in the real, physical game. 
 - Instead of using CLI, another form of interface could be used which may come with better visual design. 
 - Use other libraries to include actual ship objects which represent the ships rather than **@**.
-- Board design could definitely be improved by adding more space to each grid to fit boat objects. 
+- Board design could definitely be improved by adding more space to each grid to fit boat objects.
+- Add more action when a ship is hit rather than just text. For example, an explosion image. 
+
+## 3. Testing and Bugs Fixed/Unfixed
+
+## **Validator Testing**
+
+Battleship Voyage is a program purely built using Python so once the code was complete, the developer pasted through **PEP8** and it passed with no errors or issues.
+
+[Link to PEP8](http://pep8online.com/)

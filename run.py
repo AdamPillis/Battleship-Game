@@ -51,6 +51,18 @@ def random_number(size):
     return randint(0, (size) - 1)
 
 
+def get_name():
+    """
+    Return name entered only if something has been entered.
+    """
+    name = input('Please enter your name here:\n')
+    while name == '':
+        print('You need to enter name.\n')
+        name = input('Please enter your name here:\n')
+        return name
+    return name
+
+
 def get_user_data():
     """
     Collects information from user which is required
@@ -123,7 +135,6 @@ def populate_game_board(board):
         board.add_ships(row, col)
 
     board.print_board()
-    # print(board.ships)
 
 
 def make_guess(board):
@@ -271,7 +282,7 @@ def new_game():
     print("    ^^^^      ^^^^     ^^^    ^^")
     print("         ^^^^      ^^^\n")
     print('~' * 60)
-    name = input('Please enter your name here:\n')
+    name = get_name()
     time.sleep(0.5)
     print(f"Hi {name}. Let's go through some rules first...\n")
     time.sleep(1)
