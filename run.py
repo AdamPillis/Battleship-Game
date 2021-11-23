@@ -269,6 +269,7 @@ def scores(board, hit):
 def new_game():
     """
     Runs main game from start to finish.
+    Displays rules and reminder box before game starts.
     At finish, restarts or quits function based on user input.
     Includes end-game goodbye message.
     """
