@@ -8,6 +8,8 @@ import time
 
 class Board:
     """
+    Original inspiration for class came from Project 3 Scope video
+    and then altered by developer
     General strucuture for each player and board.
     Used to call board information throughout the game.
     Global score also used to keep score count.

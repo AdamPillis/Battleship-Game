@@ -253,3 +253,81 @@ He then realised he can just use the class of each board to he created a score v
 
 ### **Unfixed Bugs**
 Within this game, no erros or unfixed bugs are identified when testing the game. 
+
+## 4. **Deployment**
+
+**Heroku** was used to deploy this *python based* project. The data was pushed from *GitPod* to *GitHub* which was linked and deployed through *Heroku*.
+
+The steps needed to follow to deploy Battleship Voyage are:
+
+1. Go to Heroku's official website.
+
+2. Log in and click on *new* in the top right corner.
+
+3. Select *Create new app*.
+
+4. Chose an *app-name* and click on *Create app*.
+
+5. Within the nav bar, click on *Settings*.
+
+6. Select *Reveal Config Vars* in the centre.
+
+7. Add *PORT* for KEY and *8000* for VALUE and click *Add*. (Nothing else required for this project here.)
+
+8. Click on *Add buildpack*.
+
+9. Select *python* first and click on *Save changes*.
+
+10. Click on *Add buildpack* again.
+
+11. Select *nodejs* and click *Save changes*. (Make sure python is on top and nodejs is below!)
+
+12. Scroll back to the top and from the nav bar, click on *Deploy*.
+
+13. Under Deployment method, select *GitHub*.
+
+14. Right under, search for Battleship Voyage's repositary and select it. 
+
+15. Click *Connect*.
+
+16. For automatic updates with GitPod pushes, click on *Enable Automatic Deploys*.
+
+17. Click on *Deploy Branch*. (Once deployed, link will display at the bottom of this page.)
+
+## 5. Credits
+
+### **Content**
+
+#### **Ship Image**
+
+**Name** : ASCII Art Boat
+
+**Link** : [https://textart.io/art/tag/boat/1](https://textart.io/art/tag/boat/1)
+
+#### **Time Delay library**
+
+**Name** : Stack Overflow - Time Delay
+
+**Link** : [https://stackoverflow.com/questions/510348/how-can-i-make-a-time-delay-in-python](https://stackoverflow.com/questions/510348/how-can-i-make-a-time-delay-in-python)
+
+#### **Class Function set up**
+
+**Name** : 1. Code Institutes LMS - Portfolio 3: Project Submission - Portfolio Project 3 Scope.
+
+**Link** : [https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/)
+
+**Name** : Code Institute's online LMS - Python - Defining Classes in Python
+
+**Link** : [https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/?child=first](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/?child=first)
+
+#### **Workflow Structure Idea**
+
+**Website** : www.youtube.com
+
+**Name** : CSCI 105 - Python Review: Creating a Battleship Game
+
+**Link** : [https://www.youtube.com/watch?v=3dXkgVej7M0&t=2s](https://www.youtube.com/watch?v=3dXkgVej7M0&t=2s)
+
+#### **Slack Community**
+- Keeping a close eye on other student's work and question relating to project 3 through Slack - **# project-portfolio-3**
+
