@@ -282,8 +282,7 @@ def new_game():
     print("     __///____|____|____|_____")
     print("---------(                   /---------")
     print("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^")
-    print("    ^^^^      ^^^^     ^^^    ^^")
-    print("         ^^^^      ^^^\n")
+    print("    ^^^^      ^^^^     ^^^    ^^\n")
     print('~' * 60)
     name = get_name()
     time.sleep(1)
@@ -326,7 +325,6 @@ def new_game():
         new_game()
     else:
         print(f'Well played {player_board.name}. Goodbye for now!\n')
-        print('Game over')
 
 
 new_game()
