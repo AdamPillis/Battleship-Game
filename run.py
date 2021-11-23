@@ -71,7 +71,7 @@ def get_user_data():
     to set up the game i.e size of the board and number of ships.
     Returns size and number of ships in a
     list form.
-    The while stays active until the input validation function
+    The while loop stays active until the input validation function
     comes back true to prevent Key and Value error
     """
     while True:
