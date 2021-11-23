@@ -2,6 +2,8 @@
 
 ## 1. **Introduction**
 
+![Welcome section](images/welcome-image.PNG "Landing section")
+
 ### **What is Battleship Voyage?**
 Battleship voyage is a CLI or Command Line Interface program which connects the user with the computer to play a game of Battleships in its simplest form. 
 [Click on me to view full game rules](https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069)
@@ -34,9 +36,6 @@ The original game was released in 1967 which indicates that the older generation
 
 **Returning User** : As mentioned above, every player has the ability to play unlimited number of games which means as a returning user, the only possible difference is the name input at the very start.
 
-SCREENSHOT
-![Welcome section of game](link"Welcome section of Battleship Voyage")
-
 ### **Planning**
 The first thing on the developer's mind was to check the official game rules through this link:
 [Battleship game rules](https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069)
@@ -44,17 +43,19 @@ The first thing on the developer's mind was to check the official game rules thr
 **Planning original workflow of game**
 The rough sketch of his first workflow outlined the main functions required when building the game. 
 
+![Original workflow](images/original-workflow.jpg "Original workflow")
+
 Given the inspiration from his *Love Sandwiches* project, he decided to create one main function which runs each game from start to finish called **new_game**.
 
 Another function called **play_game** will run each round within the game using a *while loop*.
 
 In terms of a **data model type**, he has decided to create a class model for each board: *the player* and the *computer* through which he can call functions to print each board, add random ships to each board's lists etc. This will also be handy when requesting certain information such as ship co-ordinates, board name, updated board at the start of each round etc. 
 
-SCREENSHOT OF FUNCTION AND CLASS LAYOUT
+![Function and class planning](images/function-planning.jpg "Function and class planning")
 
 Once this was complete, he re-created his **game workflow** and used all of the above to build this simplified battleship game.
 
-SCREENSHOT OF NEW WORKFLOW
+![New workflow](images/end-workflow.jpg "New workflow")
 
 Screen size was also considered when planning this game so therefore, welcome image and design was planned to fit and look good on all screens. 
 
@@ -67,7 +68,7 @@ Overall, the developer decided to use the *time library* to add delays in second
 - Program starts to interact with the user by requesting name input.
 - Tells the user to pay attention to the rules.
 
-SCREENSHOT OF START
+![Welcome section](images/welcome-image.PNG "Welcome section")
 
 ### 2. **Rules section**
 - Consists of 4 rules. 
@@ -75,7 +76,7 @@ SCREENSHOT OF START
 confusion throughout the game.
 - At the end, the user needs to press Enter in order to start the game. This is to ensure they have had enough time to read the rules and prepare for the game. 
 
-SCREENSHOT OF RULES
+![Rules section](images/rules-section.PNG "Rules section")
 
 ### 3. **User input section**
 The user is given the ability to select the size of their and number of ships which will alter the number of rounds as stated in the rules section. Each input is validated and the game will only continue if the validation function returns **true**.
@@ -84,14 +85,14 @@ The user is given the ability to select the size of their and number of ships wh
 - User input for **number of ships** (this number will be used to create random co-ordinates on each board). Play_game function stays in while loop while this number matches the number of guesses on each board.
 - Identical validation to *size*.
 
-SCREENSHOT OF USER INPUT
+![User Input section](images/input-section.PNG "User Input section")
 
 ### 4. **Reminder Box**
 - Reminds player that co-ordinates start with 0 rather than 1 and also displays range of co-ordinates. 
 - Displays number of ships chosen by user and hence, the number of rounds. 
 - Play_game function starts
 
-SCREENSHOT OF REMINDER BOX
+![User reminder section](images/reminder-section.PNG "User reminder section")
 
  ### 5. **In-game section**
  - Both boards are displayed. For the player, the random ships are marked with **@**. For the computer, they're hidden. 
@@ -106,7 +107,11 @@ SCREENSHOT OF REMINDER BOX
  - At the end of each round, this score is called from both classes and displayed to show current scores.
  - Next round will not start unless, user presses **Enter** or if they wish to quit, press **q**
 
- SCREENSHOT OF IN-GAME
+**Part 1.**
+ ![In-game part one](images/in-game-one.PNG "In-game part one")
+
+**Part 2.**
+ ![In-game part two](images/in-game-two.PNG "In-game part two")
 
  ### 6. **End section**
  - Once the number of guesses match the number ships or rounds, when the player inputs **Enter** next, a message is printed to tell the player that the game is over. 
@@ -114,7 +119,11 @@ SCREENSHOT OF REMINDER BOX
  - Displays final board for both sides.
  - A final input requests the user to enter **y** to restart the *new_game* function or **n** to display a **goodbye message** and break the game loop. 
 
-SCREENSHOT OF END
+**Part 1.**
+ ![End-game part one](images/end-game-one.PNG "End-game part one")
+
+**Part 2.**
+ ![End-game part two](images/end-game-two.PNG "End-game part two")
 
 ## Features (new ideas)
 - Instead of number co-ordinates, letters could be used to represent each columns and numbers to represent rows. Possibly displayed with each board so the user has a better understanding of rows and cols. 
@@ -132,7 +141,7 @@ Battleship Voyage is a program purely built using Python so once the code was co
 
 [Link to PEP8](http://pep8online.com/)
 
-SCREENSHOT OF VALIDATION
+![PEP8 Validation](images/pep8-validation.PNG "PEP8 Validation")
 
 ### **Search Engine Testing**
 
@@ -141,17 +150,29 @@ Battleship Voyage was opened and tested on several search engines such as Google
 1. **Google Chrome**
 Default SE so therefore, everything is working perfect.
 
-SCREENSHOT 
-
 2. **Mozilla Firefox**
 Game was tested through this *search engine* and it runs as expected. 
 
-SCREENSHOTS
+**Welcome section**
+![Mozilla welcome section](images/mozilla-one.PNG "Mozilla welcome section")
+
+**In-game section**
+![Mozilla in-game section](images/mozilla-two.PNG "Mozilla in-game section")
+
+**End section**
+![Mozilla end section](images/mozilla-three.PNG "Mozilla end section")
 
 3. **Microsoft Edge**
 The game ran without any errors, issues or bugs through this *search engine* as well. 
 
-SCREENSHOTS 
+**Welcome section**
+![MS Edge welcome section](images/ms-edge-one.PNG "MS Edge welcome section")
+
+**In-game section**
+![MS Edge in-game section](images/ms-edge-two.PNG "MS Edge in-game section")
+
+**End section**
+![MS Edge end section](images/ms-edge-three.PNG "MS Edge end section")
 
 ### **Application Features Test**
 
@@ -160,26 +181,27 @@ In terms of features and user interactivity, every possible outcome has been tri
 **Welcome section**
 - **Name Input**
     - get_name function will not proceed unless a name is entered. **true**
-SCREENSHOT OF VALIDATION
+
+![Name Validation](images/name-validation.PNG "Name Validation")
 
 **Rules section**
 - **Rules input**
     - once rules are displayed, input asking user to press enter is showing and working. **true**
     - is user mistakenly presses any key before enter, the program will still continue instead of crashing. **true**
-SCREENSHOT
 
 **Get User Data section**
-- **get size input**
-    - only numbers between 5 and 10 allowed . **true**
-    - only whole integers allowed. **true**
 
-SCREENSHOT
+**get size input**
+- only numbers between 5 and 10 allowed . **true**
+- only whole integers allowed. **true**
 
-- **get number of ships input**
-    - only numbers between 5 and 10 allowed . **true**
-    - only whole integers allowed. **true**
+![Size input validation](images/size-validation.PNG "Size input validation")
 
-    SCREENSHOT
+**get number of ships input**
+- only numbers between 5 and 10 allowed . **true**
+- only whole integers allowed. **true**
+
+![Ships input validation](images/ships-validation.PNG "Ships input validation")
 
 **Reminder Section Box**
 - correct information displayed to user before game starts.
@@ -187,7 +209,7 @@ SCREENSHOT
     - number of ships. **true**
     - number of rounds. **true**
 
-    SCREENSHOT
+![Reminder section testing](images/reminder-box-testing.PNG "Reminder section testing")
 
 **In-game section**
 
@@ -195,50 +217,36 @@ SCREENSHOT
     - only numbers within range allowed to be entered. **true**
     - only integers are accepted. **true**
 
-    SCREENSHOT
-
 - **col number input**
     - only numbers within range allowed to be entered. **true**
     - only integers are accepted. **true**
 
-    SCREENSHOT
+![Row and column input testing](images/row-and-col-validation.PNG "Row and column input testing")
 
 - updated scores displayed at the end of each round. **true**
 - next round only starts when user clicks *Enter*. **true**
 - if user enters *q* and clicks enter, game finishes. **true**
 
-SCREENSHOT
+![Testing quit option](images/q-input-validation.PNG "Testing quit option")
 
 - when number of guesses equal to the number of ships, game finishes. **true**
-
-SCREENSHOT
 
 **End section**
 - when user clicks *Enter*, final scores and board are displayed. **true**
 
-SCREENSHOT
-
 - specific feedback messages print according to final scores. **true**
 
-- **Input to play again**
-    - when *y* entered, game reloads. **true**
-    - when *n* entered, goodbye message displayed and game finishes. **true**
+**Input to play again**
+- when *y* entered, game reloads. **true**
+- when *n* entered, goodbye message displayed and game finishes. **true**
 
-    SCREENSHOT
+![Testing play again option](images/n-input-validation.PNG "Testing play again option")
 
 ### **Screen Responsive Testing**
 
 For this *python* based program, [Am I Responsive](http://ami.responsivedesign.is/) website was used to test and check how the CLI is showing within the browser on multiple sized screens. 
 
-#### **Welcome section**
-
-#### **Rules section**
-
-#### **Input section**
-
-#### **Game section**
-
-#### **End section**
+![Testing screen-size responsiveness](images/responsive-testing.PNG "Testing screen-size responsiveness")
 
 ### **Other ways of testing responsiveness**
 The developer has tested the game on his own mobile and other devices while asking other family members to do the same and game runs as expected. 
