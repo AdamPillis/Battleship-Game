@@ -160,6 +160,12 @@ Battleship Voyage is a program purely built using Python so once the code was co
 
 [Link to PEP8](http://pep8online.com/)
 
+Before testing the code, the developer was aware that he needs to leave a blank line at the end of his code which he has done in GitPod as shown below, however, in order to not show as an error, he needed to add this extra line within PEP8 as it does not show on GitHub.
+
+![Adding end line in GitPod](images/end-line-gitpod.PNG "Adding end line in GitPod")
+
+Once the extra line is added at the end of the code.
+
 ![PEP8 Validation](images/pep8-validation.PNG "PEP8 Validation")
 
 ### **Search Engine Testing**
